@@ -7,8 +7,6 @@ import plotly.graph_objects as go
 from TQQQ_UVXY_MDD import MDDGraph_one, MDDGraph_tow_combination
 from MDD import mdd
 
-# rebalencing_ratio = [9, 1]
-
 
 def onlyOneTickerDailyRebalancing(ticker1, Start="2019-01-01", End=datetime.today()):
     tickerA = yf.Ticker(ticker1)
@@ -20,11 +18,6 @@ def onlyOneTickerDailyRebalancing(ticker1, Start="2019-01-01", End=datetime.toda
         map(lambda x: x/tickerA_close[0]*1000, tickerA_close))
     # print(tickerA_close)
     return tickerA_close, tickerA_
-
-    # tickerA_strategy = go.Scatter(x=tickerA_['Date'][1:],
-    #                               y=tickerA_close,
-    #                               )
-    # Array.append(tickerA_strategy)
 
 
 def combineTwoTickerDailyRebalancing(ticker1, ticker2, rebalencing_ratio=(0.9, 0.1), Start="2019-01-01", End=datetime.today()):
@@ -82,35 +75,6 @@ def combineTwoTickerDailyRebalancing(ticker1, ticker2, rebalencing_ratio=(0.9, 0
     else:
         return combined_ticker_total_asset, tickerBB
 
-    # i += 1
-
-    #     if j > 100:
-    #         break
-
-    # for i in range(max(len(tickerA_daily_percentage), len(tickerB_daily_percentage))):
-    #     tmp1 = round(tmp1*tickerA_daily_percentage[i]
-    #                  * rebalencing_ratio[0]/sum(rebalencing_ratio) + tmp1*tickerB_daily_percentage[i]*rebalencing_ratio[1]/sum(rebalencing_ratio))
-    #     combined_ticker_total_asset.append(tmp1)
-    # return combined_ticker_total_asset, tickerBB
-
-    # UVXY = yf.Ticker('UVXY')
-    # uvxy = UVXY.history(start="2019-01-01",  end=datetime.today())
-    # uvxy = uvxy.reset_index()
-    # for i in ['Open', 'High', 'Close', 'Low']:
-    #     uvxy[i] = uvxy[i].astype('float64')
-    # uvxy = uvxy['Close']
-    # uvxy_daily_percentage = []
-    # for i in range(1, len(uvxy)):
-    #     uvxy_daily_percentage.append(round((uvxy[i]-uvxy[i-1])/uvxy[i-1]+1, 6))
-
-    # for i in range(len(qqq_daily_percentage)):
-    #     tmp1 = round(tmp1*qqq_daily_percentage[i]
-    #                 * 0.9 + tmp1*uvxy_daily_percentage[i]*0.1)
-
-    # ticker_A_B_total_asset.append(tmp1)
-    # ticker_A_B_total_asset = [1000]
-    # tmp1 = ticker_A_B_total_asset[0]
-
 
 def getGraph(tickerArray,   Start="2019-01-01", End=datetime.today(), title="TITLE"):
     Array = []
@@ -165,5 +129,4 @@ def getGraphWithMdd(tickerArray,  Start="2019-01-01", End=datetime.today(), titl
 
     fig = go.Figure(data=Array)
     fig.update_layout(yaxis_type="log")
-    # xaxis_rangeslider_visible=False,
     fig.show()

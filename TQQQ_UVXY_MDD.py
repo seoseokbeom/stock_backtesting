@@ -40,13 +40,6 @@ def MDDGraph_tow_combination(ticker1, ticker2, title="TITLE", rebalancing_ratio=
         ticker1, Start, End)
     tickerB_daily_percentage, ticker2_date = dailyPercentage(
         ticker2, Start, End)
-    # for i in range(len(ticker2_daily_percentage)):
-    #     tmp1 = round(
-    #         tmp3*ticker1_daily_percentage[i] * ratio[0] + tmp3*ticker2_daily_percentage[i]*ratio[1])
-    #     total_asset.append(tmp1)
-    # total_asset = pd.DataFrame(total_asset,   columns=['Close'])
-    # maxMDD = mdd(total_asset, title)
-
     i, j = 0, 0
     while i < len(tickerA_daily_percentage) and j < len(tickerB_daily_percentage):
         if i >= len(tickerA_daily_percentage) or j >= len(tickerB_daily_percentage):
@@ -72,17 +65,6 @@ def MDDGraph_tow_combination(ticker1, ticker2, title="TITLE", rebalancing_ratio=
         combined_ticker_total_asset,   columns=['Close'])
     maxMDD = mdd(combined_ticker_total_asset, title)
     return maxMDD
-    # print(tmp1)
-
-    # TQQQ_UVXY_total_asset = [1000]
-    # tmp3 = TQQQ_UVXY_total_asset[0]
-    # for i in range(len(tqqq_daily_percentage)):
-    #     tmp3 = round(tmp3*tqqq_daily_percentage[i]
-    #                 * 0.8 + tmp3*uvxy_daily_percentage[i]*0.2)
-    #     TQQQ_UVXY_total_asset.append(tmp3)
-
-    # TQQQ_UVXY_total_asset = pd.DataFrame(
-    #     TQQQ_UVXY_total_asset,   columns=['Close'])
 
 
 TQQQ = yf.Ticker('TQQQ')
@@ -117,25 +99,3 @@ for i in range(len(tqqq_daily_percentage)):
 
 TQQQ_UVXY_total_asset = pd.DataFrame(
     TQQQ_UVXY_total_asset,   columns=['Close'])
-# mdd
-# maxMDD = mdd(TQQQ_UVXY_total_asset)
-
-# import plotly.graph_objects as go
-# fig = go.Figure(data=[go.Candlestick(x=qqq['Date'],
-#                                      open=qqq['Open'],
-#                                      high=qqq['High'],
-#                                      low=qqq['Low'],
-#                                      close=qqq['Close'],
-#                                      )]).update_layout(title_font_size=24)
-# fig.update_layout(
-#     title="QQQ mdd:-{}%".format(maxMDD),
-#     yaxis_title='QQQ Stock',
-#     shapes=[dict(
-#         x0='2016-12-09', x1='2016-12-09', y0=0, y1=1, xref='x', yref='paper',
-#         line_width=2)],
-#     annotations=[dict(
-#         x='2016-12-09', y=0.05, xref='x', yref='paper',
-#         showarrow=False, xanchor='left', text='Increase Period Begins')]
-# )
-# fig.update_layout(xaxis_rangeslider_visible=False, yaxis_type="log")
-# fig.show()
